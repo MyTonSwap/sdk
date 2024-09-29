@@ -16,8 +16,8 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - name: Run linting rules and tests
-              uses: actions/setup-node@v3
+              uses: oven-sh/setup-bun@v1
               with:
-                  node-version: ${{ matrix.node }}
-            - run: npm ci
-            - run: npm run build
+                  bun-version: latest
+            - run: bun install
+            - run: buh run build
