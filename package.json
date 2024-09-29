@@ -1,0 +1,41 @@
+{
+    "name": "@mytonswap/sdk",
+    "description": "MyTonSwap Dex Aggregator SDK",
+    "author": {
+        "name": "MyTonSwap",
+        "url": "https://github.com/mytonswap"
+    },
+    "homepage": "https://docs.mytonswap.com",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MyTonSwap/sdk.git"
+    },
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "keywords": [
+        "MyTonSwap",
+        "TON",
+        "The Open Network",
+        "TON Blockchain",
+        "SDK",
+        "Swap",
+        "Telegram",
+        "stonfi",
+        "ston.fi",
+        "dedust",
+        "DEX",
+        "DeFi"
+    ],
+    "version": "0.0.1",
+    "type": "module",
+    "scripts": {
+        "build": "tsup"
+    },
+    "devDependencies": {
+        "tsup": "^8.3.0"
+    },
+    "peerDependencies": {
+        "typescript": "^5.0.0"
+    }
+}
