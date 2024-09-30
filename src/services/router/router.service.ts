@@ -1,5 +1,5 @@
-import { Services } from '../core/services';
-import { BestRoute, Dex } from '../types/router';
+import { Services } from '../../core/services';
+import { BestRoute, Dex } from '../../types/router';
 
 export class Router extends Services {
     public async findBestRoute(

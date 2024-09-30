@@ -1,5 +1,5 @@
-import { Services } from '../core/services';
-import { Asset } from '../types/assets';
+import { Services } from '../../core/services';
+import { Asset } from '../../types/assets';
 
 export class Assets extends Services {
     public async getExactAsset(asset: string): Promise<Asset | null> {

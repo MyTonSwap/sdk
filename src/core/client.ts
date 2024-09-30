@@ -1,8 +1,8 @@
 import { MyTonSwapClientOptions } from '../types/client';
 import { defaultBaseUrl } from '../constants';
 import { Request } from './request';
-import { Assets } from '../services/assets.service';
-import { Router } from '../services/router.service';
+import { Assets } from '../services/assets/assets.service';
+import { Router } from '../services/router/router.service';
 export class MyTonSwapClient {
     public options: { apiKey: string | undefined; baseUrl: string | undefined } | undefined;
     public request = new Request(this);
