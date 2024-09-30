@@ -5,6 +5,12 @@
 <p align="center">SDK for MyTonSwap DEX aggregator</p>
 
 
+### ⚠️ Active Development Notice ⚠️
+This project is currently under active development and is not yet ready for public use.
+
+We recommend you DO NOT use this project in production environments until a stable release is announced. Expect frequent changes, updates, and possible breaking changes during this phase.
+
+
 Installation:
 
 ```bash
