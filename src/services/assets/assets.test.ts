@@ -75,7 +75,6 @@ test('it should search pairs of ton and duck should be there', async () => {
         true,
         'duck',
     );
-    console.log(assets);
     expect(assets.length).toBeGreaterThan(0);
     expect(
         assets.filter((item) => item.address === 'EQBTcytZjdZwFLj6TO7CeGvn4aMmqXvbX-nODiApbd011gT3')
