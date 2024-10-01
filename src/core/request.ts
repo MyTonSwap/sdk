@@ -18,6 +18,7 @@ export class Request {
             headers: {
                 'x-api-key': this.client.options?.apiKey ?? '',
             },
+            method: 'GET',
             validateStatus: () => true,
         } satisfies AxiosRequestConfig;
 
