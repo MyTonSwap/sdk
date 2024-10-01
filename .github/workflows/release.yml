@@ -6,12 +6,16 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            id-token: write
         steps:
             - uses: actions/checkout@v3
             - name: install bun for tests and publish
               uses: oven-sh/setup-bun@v1
               with:
                   bun-version: latest
+                  registry-url: 'https://registry.npmjs.org'
             - name: node publish
               uses: actions/setup-node@v4
               with:

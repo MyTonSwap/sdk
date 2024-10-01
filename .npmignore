@@ -1,6 +1,6 @@
 /src
 /node_modules
-
+.github
 .env
 
 tsconfig.json
