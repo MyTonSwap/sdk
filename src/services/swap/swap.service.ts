@@ -112,7 +112,6 @@ export class Swap extends Services {
                 ? DEX.v1.Router.gasConstants
                 : DEX.v2_1.Router.gasConstants;
 
-        console.log(bestRoute.pool_data.route[0]);
         if (bestRoute.pool_data.route[0] === TON_ADDRESS) {
             swapTxParams = await router.getSwapTonToJettonTxParams({
                 userWalletAddress: userWalletAddress,
@@ -200,6 +199,7 @@ export class Swap extends Services {
             };
         }
         const factory = this.client.tonClient.open(Factory.createFromAddress(MAINNET_FACTORY_ADDR));
+        await sleep(500);
         if (jetton0 == 'EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c') {
             if (jetton2 && jetton2 !== '') {
                 throw new Error('This request can not process!');
