@@ -10,7 +10,7 @@ beforeEach(() => {
 });
 
 test('it should get data for swap from stonfi', async () => {
-    await sleep(1000);
+    await sleep(1500);
     const TON = await client.assets.getExactAsset('TON');
     const NOT = await client.assets.getExactAsset('NOT');
     const bestRoute = await client.router.findBestRoute(TON!.address, NOT!.address, 1, 1, 'stonfi');
@@ -21,7 +21,7 @@ test('it should get data for swap from stonfi', async () => {
 });
 
 test('it should get data for swap from dedust', async () => {
-    await sleep(1000);
+    await sleep(1500);
     const TON = await client.assets.getExactAsset('TON');
     const NOT = await client.assets.getExactAsset('NOT');
     const bestRoute = await client.router.findBestRoute(TON!.address, NOT!.address, 1, 1, 'dedust');
