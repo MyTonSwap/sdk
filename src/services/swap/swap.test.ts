@@ -9,24 +9,44 @@ beforeEach(() => {
     client = new MyTonSwapClient();
 });
 
-test('it should get data for swap from stonfi', async () => {
-    await sleep(1500);
-    const TON = await client.assets.getExactAsset('TON');
-    const NOT = await client.assets.getExactAsset('NOT');
-    const bestRoute = await client.router.findBestRoute(TON!.address, NOT!.address, 1, 1, 'stonfi');
-    const swap = await client.swap.swap(userWallet, bestRoute);
-    expect(swap).toBeObject();
-    expect(swap?.value).not.toBeUndefined();
-    expect(swap?.value).toBeGreaterThan(toNano(1));
-});
+test(
+    'it should get data for swap from stonfi',
+    async () => {
+        await sleep(1500);
+        const TON = await client.assets.getExactAsset('TON');
+        const NOT = await client.assets.getExactAsset('NOT');
+        const bestRoute = await client.router.findBestRoute(
+            TON!.address,
+            NOT!.address,
+            1,
+            1,
+            'stonfi',
+        );
+        const swap = await client.swap.swap(userWallet, bestRoute);
+        expect(swap).toBeObject();
+        expect(swap?.value).not.toBeUndefined();
+        expect(swap?.value).toBeGreaterThan(toNano(1));
+    },
+    { timeout: 10000 },
+);
 
-test('it should get data for swap from dedust', async () => {
-    await sleep(1500);
-    const TON = await client.assets.getExactAsset('TON');
-    const NOT = await client.assets.getExactAsset('NOT');
-    const bestRoute = await client.router.findBestRoute(TON!.address, NOT!.address, 1, 1, 'dedust');
-    const swap = await client.swap.swap(userWallet, bestRoute);
-    expect(swap).toBeObject();
-    expect(swap?.value).not.toBeUndefined();
-    expect(swap?.value).toBeGreaterThan(toNano(1));
-});
+test(
+    'it should get data for swap from dedust',
+    async () => {
+        await sleep(1500);
+        const TON = await client.assets.getExactAsset('TON');
+        const NOT = await client.assets.getExactAsset('NOT');
+        const bestRoute = await client.router.findBestRoute(
+            TON!.address,
+            NOT!.address,
+            1,
+            1,
+            'dedust',
+        );
+        const swap = await client.swap.swap(userWallet, bestRoute);
+        expect(swap).toBeObject();
+        expect(swap?.value).not.toBeUndefined();
+        expect(swap?.value).toBeGreaterThan(toNano(1));
+    },
+    { timeout: 10000 },
+);

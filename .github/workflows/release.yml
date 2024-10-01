@@ -13,7 +13,7 @@ jobs:
                   node-version: 18
             - run: bun install
             - run: bun test
-            - run: npm run build
-            - run: npm publish
+            - run: bun run build
+            - run: npm publish --access public
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
