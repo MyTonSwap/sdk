@@ -17,11 +17,11 @@ export interface SelectedPool {
 
 export interface PoolData {
     router_address: string;
-    pay: number;
-    receive: number;
+    pay: string;
+    receive: string;
     priceImpact: number;
-    minimumReceive: number;
-    innerMinimumReceive: number;
+    minimumReceive: string;
+    innerMinimumReceive: string;
     blockchainFee: string;
     status: boolean;
     message: string;

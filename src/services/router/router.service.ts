@@ -1,3 +1,4 @@
+import { toNano } from '@ton/ton';
 import { Services } from '../../core/services';
 import { BestRoute, Dex } from '../../types/router';
 
@@ -15,7 +16,7 @@ export class Router extends Services {
         const body = {
             token0: inputAssetAddress,
             token1: outputAssetAddress,
-            amount: payAmount,
+            amount: toNano(payAmount).toString(),
             slippage: slippage ?? 'auto',
             token0_symbol: 'SDK',
             token1_symbol: 'SDK',
@@ -23,7 +24,7 @@ export class Router extends Services {
             dex: forceDex,
         };
         const data = this.client.request.send<BestRoute>({
-            url: '/swap-process/data/pools',
+            url: '/swap-process/data/pools-v2',
             method: 'POST',
             data: body,
         });

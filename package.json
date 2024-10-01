@@ -38,7 +38,9 @@
         "tsup": "^8.3.0"
     },
     "peerDependencies": {
-        "typescript": "^5.0.0"
+        "@ton/ton": "^15.0.0",
+        "typescript": "^5.0.0",
+        "@ston-fi/sdk": "2.0.0-rc.5"
     },
     "dependencies": {
         "@lifeomic/attempt": "^3.1.0",

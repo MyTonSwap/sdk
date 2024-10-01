@@ -1,5 +1,6 @@
 export type MyTonSwapClientOptions = {
     apiKey: string;
+    tonCenterApiKey: string;
     baseUrl: string;
 };
 

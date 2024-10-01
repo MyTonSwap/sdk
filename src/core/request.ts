@@ -19,7 +19,6 @@ export class Request {
                 'x-api-key': this.client.options?.apiKey ?? '',
             },
             method: 'GET',
-            validateStatus: () => true,
         } satisfies AxiosRequestConfig;
 
         const options = defaultsDeep(userOptions, defaultOptions, {
@@ -28,7 +27,12 @@ export class Request {
 
         const response = await this.faultTolerantRequest<MyTonSwapResponse<T>>(options);
         this.handleErrors<T>(response);
-        const data = this.transformBody(response!.data);
+        let data;
+        if (userOptions.baseURL === defaultBaseUrl) {
+            data = this.transformBody(response!.data);
+        } else {
+            data = response!.data as T;
+        }
         return data;
     }
 
