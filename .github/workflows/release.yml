@@ -8,10 +8,15 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
-            - name: Run tests and publish
+            - name: install bun for tests and publish
               uses: oven-sh/setup-bun@v1
               with:
                   bun-version: latest
+            - name: node publish
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20.x'
+                  registry-url: 'https://registry.npmjs.org'
             - run: bun install
             - run: bun test
             - run: bun run build
