@@ -8,14 +8,11 @@ jobs:
     build:
         # The type of runner that the job will run on
         runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                node: [14, 16, 18]
 
-        name: Node ${{ matrix.node }} sample
+        name: run tests on prs
         steps:
             - uses: actions/checkout@v3
-            - name: Run linting rules and tests
+            - name: Run tests
               uses: oven-sh/setup-bun@v1
               with:
                   bun-version: latest

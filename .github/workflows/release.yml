@@ -8,9 +8,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - name: Run tests and publish
+              uses: oven-sh/setup-bun@v1
               with:
-                  node-version: 18
+                  bun-version: latest
             - run: bun install
             - run: bun test
             - run: bun run build
