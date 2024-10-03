@@ -1,5 +1,6 @@
 import { beforeAll, beforeEach, expect, test } from 'bun:test';
 import { MyTonSwapClient } from '../../core/client';
+import { toNano } from '../../utils';
 let client: MyTonSwapClient;
 
 beforeEach(() => {
@@ -12,7 +13,11 @@ test('it should find a route for a pair', async () => {
     expect(asset0).not.toBeNull();
     expect(asset1).not.toBeNull();
 
-    const bestRoute = await client.router.findBestRoute(asset0!.address, asset1!.address, 1000);
+    const bestRoute = await client.router.findBestRoute(
+        asset0!.address,
+        asset1!.address,
+        toNano(1000),
+    );
     expect(bestRoute.selected_pool.dex).toBe('stonfi');
 });
 
@@ -22,7 +27,11 @@ test('it should select dedust for scale', async () => {
     expect(asset0).not.toBeNull();
     expect(asset1).not.toBeNull();
 
-    const bestRoute = await client.router.findBestRoute(asset0!.address, asset1!.address, 1000);
+    const bestRoute = await client.router.findBestRoute(
+        asset0!.address,
+        asset1!.address,
+        toNano(1000),
+    );
     expect(bestRoute.selected_pool.dex).toBe('dedust');
 });
 
@@ -32,7 +41,11 @@ test('it should select ston for ston', async () => {
     expect(asset0).not.toBeNull();
     expect(asset1).not.toBeNull();
 
-    const bestRoute = await client.router.findBestRoute(asset0!.address, asset1!.address, 1000);
+    const bestRoute = await client.router.findBestRoute(
+        asset0!.address,
+        asset1!.address,
+        toNano(1000),
+    );
     expect(bestRoute.selected_pool.dex).toBe('stonfi');
 });
 
@@ -42,6 +55,10 @@ test('it should impact price on large amount input', async () => {
     expect(asset0).not.toBeNull();
     expect(asset1).not.toBeNull();
 
-    const bestRoute = await client.router.findBestRoute(asset0!.address, asset1!.address, 100000);
+    const bestRoute = await client.router.findBestRoute(
+        asset0!.address,
+        asset1!.address,
+        toNano(100000),
+    );
     expect(bestRoute.pool_data.priceImpact).toBeGreaterThan(90);
 });

@@ -18,7 +18,7 @@ import {
 } from '../../constants';
 import { Services } from '../../core/services';
 import { BestRoute } from '../../types/router';
-import { Balance, CustomPayload } from '../../types/swap';
+import { Balance } from '../../types/swap';
 import { DEX, pTON } from '@ston-fi/sdk';
 import {
     Asset,

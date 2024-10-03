@@ -6,7 +6,7 @@ export class Router extends Services {
     public async findBestRoute(
         inputAssetAddress: string,
         outputAssetAddress: string,
-        payAmount: number,
+        payAmount: bigint,
         slippage?: number,
         forceDex?: Dex,
     ) {
@@ -16,7 +16,7 @@ export class Router extends Services {
         const body = {
             token0: inputAssetAddress,
             token1: outputAssetAddress,
-            amount: toNano(payAmount).toString(),
+            amount: payAmount.toString(),
             slippage: slippage ?? 'auto',
             token0_symbol: 'SDK',
             token1_symbol: 'SDK',

@@ -18,7 +18,7 @@ test(
         const bestRoute = await client.router.findBestRoute(
             TON!.address,
             NOT!.address,
-            1,
+            toNano(1),
             1,
             'stonfi',
         );
@@ -39,7 +39,7 @@ test(
         const bestRoute = await client.router.findBestRoute(
             TON!.address,
             NOT!.address,
-            1,
+            toNano(1),
             1,
             'dedust',
         );
@@ -50,3 +50,9 @@ test(
     },
     { timeout: 10000 },
 );
+
+test('it should successfully swap tokens', async () => {
+    const TON = await client.assets.getExactAsset('TON');
+    const NOT = await client.assets.getExactAsset('NOT');
+    const bestRoute = client.router.findBestRoute(TON!.address, NOT!.address, toNano(1));
+});
