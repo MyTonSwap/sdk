@@ -1,5 +1,4 @@
 import { MyTonSwapClientOptions } from '../types/client';
-import { defaultBaseUrl } from '../constants';
 import { Request } from './request';
 import { Assets } from '../services/assets/assets.service';
 import { Router } from '../services/router/router.service';
