@@ -38,7 +38,7 @@ export class Swap extends Services {
     /**
      * swap
      */
-    public async swap(userWalletAddress: string, bestRoute: BestRoute) {
+    public async createSwap(userWalletAddress: string, bestRoute: BestRoute) {
         try {
             switch (bestRoute.selected_pool.dex) {
                 case 'stonfi':

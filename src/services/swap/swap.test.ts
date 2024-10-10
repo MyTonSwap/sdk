@@ -1,4 +1,4 @@
-import { beforeAll, beforeEach, expect, test } from 'bun:test';
+import { beforeEach, expect, test } from 'bun:test';
 import { MyTonSwapClient } from '../../core/client';
 import { toNano } from '@ton/ton';
 import { sleep } from 'bun';
@@ -22,7 +22,7 @@ test(
             1,
             'stonfi',
         );
-        const swap = await client.swap.swap(userWallet, bestRoute);
+        const swap = await client.swap.createSwap(userWallet, bestRoute);
         expect(swap).toBeObject();
         expect(swap?.value).not.toBeUndefined();
         expect(swap?.value).toBeGreaterThan(toNano(1));
@@ -43,16 +43,10 @@ test(
             1,
             'dedust',
         );
-        const swap = await client.swap.swap(userWallet, bestRoute);
+        const swap = await client.swap.createSwap(userWallet, bestRoute);
         expect(swap).toBeObject();
         expect(swap?.value).not.toBeUndefined();
         expect(swap?.value).toBeGreaterThan(toNano(1));
     },
     { timeout: 10000 },
 );
-
-test('it should successfully swap tokens', async () => {
-    const TON = await client.assets.getExactAsset('TON');
-    const NOT = await client.assets.getExactAsset('NOT');
-    const bestRoute = client.router.findBestRoute(TON!.address, NOT!.address, toNano(1));
-});

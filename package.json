@@ -6,13 +6,19 @@
         "url": "https://github.com/mytonswap"
     },
     "homepage": "https://docs.mytonswap.com",
+    "contributors": [
+        {
+            "email": "ho3einwave@gmail.com",
+            "name": "Ho3einWave"
+        }
+    ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/MyTonSwap/sdk.git"
     },
-    "main": "./dist/index.js",
-    "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
     "keywords": [
         "MyTonSwap",
         "TON",
