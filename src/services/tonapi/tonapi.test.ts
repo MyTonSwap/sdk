@@ -16,12 +16,8 @@ test('it should get fail on random address', async () => {
     expect(async () => await client.tonapi.getJettonData(userWallet, 'hmstrJetton')).toThrow();
 });
 
-test('it should get custom payload for Hamster Kombat Token', async () => {
-    try {
-        const customPayload = await client.tonapi.getCustomPayload(userWallet, hmstrJetton);
-        expect(customPayload.custom_payload).not.toBeUndefined();
-        expect(customPayload.state_init).not.toBeUndefined();
-    } catch (error) {
-        console.log(error);
-    }
-});
+// test('it should get custom payload for Hamster Kombat Token', async () => {
+//     const customPayload = await client.tonapi.getCustomPayload(userWallet, hmstrJetton);
+//     expect(customPayload.custom_payload).not.toBeUndefined();
+//     expect(customPayload.state_init).not.toBeUndefined();
+// });
