@@ -1,3 +1,8 @@
+export interface PaginatedAssets {
+    assets: Asset[];
+    meta: Meta;
+}
+
 export interface Asset {
     id: number;
     createdAt: string;
@@ -12,11 +17,6 @@ export interface Asset {
     verify_tag: boolean;
     liquidity: number;
     liquidity_text: string;
-}
-
-export interface PaginatedAssets {
-    assets: Asset[];
-    meta: Meta;
 }
 
 export interface Meta {

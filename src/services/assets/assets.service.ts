@@ -1,5 +1,5 @@
 import { Services } from '../../core/services';
-import { Asset } from '../../types/assets';
+import { Asset, PaginatedAssets } from '../../types/assets';
 
 export class Assets extends Services {
     public async getExactAsset(asset: string): Promise<Asset | null> {
@@ -35,7 +35,7 @@ export class Assets extends Services {
      * getPaginatedAssets
      */
     public async getPaginatedAssets(page = 1, warning = false, phrase?: string) {
-        const listOfAssets = await this.client.request.send<{ assets: Asset[]; meta: {} }>({
+        const listOfAssets = await this.client.request.send<PaginatedAssets>({
             url: `/swap-process/data/assets/find/${page}?warning=${warning}${
                 phrase ? `&search=${phrase}` : ''
             }`,
