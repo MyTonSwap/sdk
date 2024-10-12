@@ -30,6 +30,26 @@ test('it should get user assets in type of map', async () => {
     );
 });
 
+test('it should get asset rate by any address', async () => {
+    const rateRaw = await client.tonapi.getAssetsRates([
+        '0:0000000000000000000000000000000000000000000000000000000000000000',
+    ]);
+    expect(
+        rateRaw.get('EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c')?.USD,
+    ).not.toBeUndefined();
+    expect(rateRaw.get('EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c')?.USD).toBeNumber();
+    const rateEq = await client.tonapi.getAssetsRates([
+        'EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c',
+    ]);
+    expect(rateEq.get('EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c')?.USD).not.toBeUndefined();
+    expect(rateEq.get('EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c')?.USD).toBeNumber();
+    const rateUq = await client.tonapi.getAssetsRates([
+        'UQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJKZ',
+    ]);
+    expect(rateUq.get('EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c')?.USD).not.toBeUndefined();
+    expect(rateUq.get('EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c')?.USD).toBeNumber();
+});
+
 // test('it should get custom payload for Hamster Kombat Token', async () => {
 //     const customPayload = await client.tonapi.getCustomPayload(userWallet, hmstrJetton);
 //     expect(customPayload.custom_payload).not.toBeUndefined();

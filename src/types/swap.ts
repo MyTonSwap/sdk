@@ -31,7 +31,7 @@ export interface IJettonsRate {
 }
 
 export interface Rates {
-    [key: string]: Price;
+    [address: string]: Price;
 }
 export interface Price {
     prices: Prices;
@@ -41,6 +41,7 @@ export interface Price {
 }
 
 export interface Prices {
+    USD: number;
     [key: string]: number;
 }
 

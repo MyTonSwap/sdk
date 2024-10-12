@@ -1,6 +1,13 @@
 import { address } from '@ton/ton';
 import { Services } from '../../core/services';
-import { Balance, CustomPayload, IJettonsRate, WalletAssets, WalletInfo } from '../../types/swap';
+import {
+    Balance,
+    CustomPayload,
+    IJettonsRate,
+    Prices,
+    WalletAssets,
+    WalletInfo,
+} from '../../types/swap';
 
 export class TonApi extends Services {
     public async getJettonData(walletAddr: string, jettonAddress: string) {
@@ -76,5 +83,26 @@ export class TonApi extends Services {
             return map;
         }, new Map<string, Balance>());
         return newBalances;
+    }
+
+    /**
+     * getAssetsRates
+     */
+    public async getAssetsRates(assetsAddresses: string[]) {
+        const addresses = assetsAddresses.join(',');
+        const { rates } = await this.client.request.send<IJettonsRate>({
+            baseURL: 'https://tonapi.io/v2',
+            url: `/rates?tokens=${
+                addresses.length > 0 ? addresses : ''
+            },EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c&currencies=usd`,
+        });
+
+        const ratesMap = assetsAddresses.reduce((map, item) => {
+            const userFriendlyAddr = address(item).toString();
+            map.set(userFriendlyAddr, rates[userFriendlyAddr].prices);
+            return map;
+        }, new Map<string, Prices>());
+
+        return ratesMap;
     }
 }
