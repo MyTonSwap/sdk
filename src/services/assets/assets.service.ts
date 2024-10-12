@@ -32,11 +32,13 @@ export class Assets extends Services {
     }
 
     /**
-     * searchAssets
+     * getPaginatedAssets
      */
-    public async searchAssets(phrase: string, page = 1, warning = false) {
+    public async getPaginatedAssets(page = 1, warning = false, phrase?: string) {
         const listOfAssets = await this.client.request.send<{ assets: Asset[] }>({
-            url: `/swap-process/data/assets/find/${page}?warning=${warning}&search=${phrase}`,
+            url: `/swap-process/data/assets/find/${page}?warning=${warning}${
+                phrase ? `&search=${phrase}` : ''
+            }`,
         });
 
         return listOfAssets.assets;

@@ -46,7 +46,7 @@ test('it should get list of assets', async () => {
 });
 
 test('it should search for ton and find it', async () => {
-    const assets = await client.assets.searchAssets('TON', 1, false);
+    const assets = await client.assets.getPaginatedAssets(1, false, 'TON');
 
     expect(assets.length).toBeGreaterThan(0);
     expect(
