@@ -16,6 +16,20 @@ test('it should get fail on random address', async () => {
     expect(async () => await client.tonapi.getJettonData(userWallet, 'hmstrJetton')).toThrow();
 });
 
+test('it should get user assets in type of map', async () => {
+    const data = await client.tonapi.getWalletAssets(
+        'UQAaIQh7jVlOEylI8jM8OI1O-yYGZRqUfJRxuR-K57pskl9I',
+    );
+    expect(data instanceof Map).toBeTrue();
+    expect(
+        data.get('EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c')?.jetton.name,
+    ).not.toBeUndefined();
+
+    expect(data.get('EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c')?.jetton.name).toEqual(
+        'TON',
+    );
+});
+
 // test('it should get custom payload for Hamster Kombat Token', async () => {
 //     const customPayload = await client.tonapi.getCustomPayload(userWallet, hmstrJetton);
 //     expect(customPayload.custom_payload).not.toBeUndefined();
