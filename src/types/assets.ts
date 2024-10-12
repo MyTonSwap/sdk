@@ -13,3 +13,17 @@ export interface Asset {
     liquidity: number;
     liquidity_text: string;
 }
+
+export interface PaginatedAssets {
+    assets: Asset[];
+    meta: Meta;
+}
+
+export interface Meta {
+    perPage: number;
+    currentPage: number;
+    nextPage: string;
+    totalPage: number;
+    previousPage: number;
+    isLastPage: boolean;
+}

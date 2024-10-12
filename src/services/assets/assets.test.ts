@@ -46,12 +46,13 @@ test('it should get list of assets', async () => {
 });
 
 test('it should search for ton and find it', async () => {
-    const assets = await client.assets.getPaginatedAssets(1, false, 'TON');
+    const data = await client.assets.getPaginatedAssets(1, false, 'TON');
 
-    expect(assets.length).toBeGreaterThan(0);
+    expect(data.assets.length).toBeGreaterThan(0);
     expect(
-        assets.filter((item) => item.address === 'EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c')
-            .length,
+        data.assets.filter(
+            (item) => item.address === 'EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c',
+        ).length,
     ).toBeGreaterThan(0);
 });
 
