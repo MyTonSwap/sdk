@@ -15,9 +15,11 @@ export class Request {
     public async send<T = any>(userOptions: AxiosRequestConfig): Promise<T> {
         const defaultOptions = {
             baseURL: this.client.options?.baseUrl ?? defaultBaseUrl,
-            headers: {
-                'x-api-key': this.client.options?.apiKey ?? '',
-            },
+            headers: userOptions.baseURL
+                ? {}
+                : {
+                      'x-api-key': this.client.options?.apiKey ?? '',
+                  },
             method: 'GET',
         } satisfies AxiosRequestConfig;
 
