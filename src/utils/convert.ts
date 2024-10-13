@@ -8,14 +8,16 @@ export function toNano(src: number | string | bigint, decimals: number = 9): big
             }
 
             if (Math.log10(src) <= 6) {
-                src = src.toLocaleString('en', { minimumFractionDigits: 9, useGrouping: false });
+                src = src.toLocaleString('en', {
+                    minimumFractionDigits: decimals,
+                    useGrouping: false,
+                });
             } else if (src - Math.trunc(src) === 0) {
                 src = src.toLocaleString('en', { maximumFractionDigits: 0, useGrouping: false });
             } else {
                 throw Error('Not enough precision for a number value. Use string value instead');
             }
         }
-
         // Check sign
         let neg = false;
         while (src.startsWith('-')) {
@@ -41,10 +43,10 @@ export function toNano(src: number | string | bigint, decimals: number = 9): big
         if (!frac) {
             frac = '0';
         }
-        if (frac.length > 9) {
+        if (frac.length > decimals) {
             throw Error('Invalid number');
         }
-        while (frac.length < 9) {
+        while (frac.length < decimals) {
             frac += '0';
         }
 
@@ -68,7 +70,7 @@ export function fromNano(src: bigint | number | string, decimals: number = 9) {
     // Convert fraction
     let frac = v % 10n ** BigInt(decimals);
     let facStr = frac.toString();
-    while (facStr.length < 9) {
+    while (facStr.length < decimals) {
         facStr = '0' + facStr;
     }
     facStr = facStr.match(/^([0-9]*[1-9]|0)(0*)/)![1];
