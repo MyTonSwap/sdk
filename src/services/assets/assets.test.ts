@@ -57,28 +57,30 @@ test('it should search for ton and find it', async () => {
 });
 
 test('it should get pairs of ton and usdt should be there', async () => {
-    const assets = await client.assets.getPairs(
+    const data = await client.assets.getPairs(
         'EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c',
         1,
         false,
     );
-    expect(assets.length).toBeGreaterThan(0);
+    expect(data.assets.length).toBeGreaterThan(0);
     expect(
-        assets.filter((item) => item.address === 'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs')
-            .length,
+        data.assets.filter(
+            (item) => item.address === 'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs',
+        ).length,
     ).toBeGreaterThan(0);
 });
 
 test('it should search pairs of ton and duck should be there', async () => {
-    const assets = await client.assets.getPairs(
+    const data = await client.assets.getPairs(
         'EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c',
         1,
         true,
         'duck',
     );
-    expect(assets.length).toBeGreaterThan(0);
+    expect(data.assets.length).toBeGreaterThan(0);
     expect(
-        assets.filter((item) => item.address === 'EQBTcytZjdZwFLj6TO7CeGvn4aMmqXvbX-nODiApbd011gT3')
-            .length,
+        data.assets.filter(
+            (item) => item.address === 'EQBTcytZjdZwFLj6TO7CeGvn4aMmqXvbX-nODiApbd011gT3',
+        ).length,
     ).toBeGreaterThan(0);
 });

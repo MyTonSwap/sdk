@@ -53,10 +53,10 @@ export class Assets extends Services {
         warning = false,
         searchPhrase: string = '',
     ) {
-        const listOfPairs = await this.client.request.send<{ assets: Asset[] }>({
+        const listOfPairs = await this.client.request.send<PaginatedAssets>({
             url: `https://app.mytonswap.com/api/swap-process/data/assets/pairs/${assetAddress}?page=${page}&warning=${warning}&search=${searchPhrase}`,
         });
 
-        return listOfPairs.assets;
+        return listOfPairs;
     }
 }
