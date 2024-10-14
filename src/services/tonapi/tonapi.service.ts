@@ -78,7 +78,7 @@ export class TonApi extends Services {
         });
         const newBalances = balances.reduce((map, item) => {
             const userFriendlyAddr = address(item.jetton.address).toString();
-            item.jetton.prices = rates[userFriendlyAddr].prices;
+            item.price = rates[userFriendlyAddr];
             map.set(userFriendlyAddr, item);
             return map;
         }, new Map<string, Balance>());
