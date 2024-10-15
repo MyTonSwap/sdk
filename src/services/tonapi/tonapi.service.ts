@@ -8,6 +8,7 @@ import {
     WalletAssets,
     WalletInfo,
 } from '../../types/swap';
+import { TransactionEvent } from '../../types/transaction-event';
 
 export class TonApi extends Services {
     public async getJettonData(walletAddr: string, jettonAddress: string) {
@@ -104,5 +105,51 @@ export class TonApi extends Services {
         }, new Map<string, Prices>());
 
         return ratesMap;
+    }
+
+    /**
+     * waitForTransactionResult
+     */
+    public async waitForTransactionResult(
+        hash: string,
+        period_ms: number = 3000,
+        maxRetry: number = 30,
+    ) {
+        let retries = 0;
+        while (retries <= maxRetry) {
+            try {
+                let result = await this.client.tonapi.getTransactionEvent(hash);
+                while (!this.allTransactionComplete(result)) {
+                    console.log('tring on hash', hash);
+                    await new Promise((resolve) => setTimeout(resolve, period_ms));
+                    result = await this.client.tonapi.getTransactionEvent(hash);
+                    retries++;
+                }
+                return result;
+            } catch (error) {
+                retries++;
+            }
+        }
+    }
+
+    /**
+     * getTransactionEvent
+     *
+     */
+    public async getTransactionEvent(hash: string) {
+        const event = await this.client.request.send<TransactionEvent>({
+            baseURL: 'https://tonapi.io/v2',
+            url: `/events/${hash}`,
+        });
+        return event;
+    }
+
+    /**
+     * allTransactionComplete
+     */
+    public allTransactionComplete(event: TransactionEvent) {
+        if (event.in_progress) return false;
+        if (event.actions.some((item) => item.status !== 'ok')) return false;
+        return true;
     }
 }

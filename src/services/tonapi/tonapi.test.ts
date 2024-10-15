@@ -50,6 +50,17 @@ test('it should get asset rate by any address', async () => {
     expect(rateUq.get('EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c')?.USD).toBeNumber();
 });
 
+test(
+    'it should wait for transaction to complete',
+    async () => {
+        const event = await client.tonapi.waitForTransactionResult(
+            '935bed287431084c28561677bb4aed200f8b31e93dfb3b88e00c46a7d6c749c1',
+        );
+        expect(event).not.toBeUndefined();
+    },
+    { timeout: 100_000 },
+);
+
 // test('it should get custom payload for Hamster Kombat Token', async () => {
 //     const customPayload = await client.tonapi.getCustomPayload(userWallet, hmstrJetton);
 //     expect(customPayload.custom_payload).not.toBeUndefined();
