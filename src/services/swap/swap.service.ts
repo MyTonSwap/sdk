@@ -177,6 +177,7 @@ export class Swap extends Services {
 
         let customPayload: Cell | undefined;
         let stateInit: { code: Cell; data: Cell } | undefined;
+        let stateInitString: string | undefined;
         if (isMintless && jettonData?.extensions?.includes('custom_payload')) {
             const offerJettonCustomPayload = await this.client.tonapi.getCustomPayload(
                 userWalletAddress,
@@ -186,6 +187,7 @@ export class Swap extends Services {
             if (!offerJettonCustomPayload) {
                 throw new Error('Unable to retrieve custom payload. Please try again.');
             }
+            stateInitString = offerJettonCustomPayload.state_init;
             customPayload = Cell.fromBoc(
                 Buffer.from(offerJettonCustomPayload.custom_payload, 'hex'),
             )[0];
@@ -298,6 +300,7 @@ export class Swap extends Services {
             value: isMintless ? TxAmount + toNano(0.07) : TxAmount,
             body: pay,
             init: stateInit,
-        } satisfies SenderArguments;
+            init_string: stateInitString,
+        };
     }
 }
