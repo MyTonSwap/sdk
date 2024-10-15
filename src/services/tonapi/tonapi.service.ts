@@ -120,7 +120,7 @@ export class TonApi extends Services {
             try {
                 let result = await this.client.tonapi.getTransactionEvent(hash);
                 while (!this.allTransactionComplete(result)) {
-                    console.log('tring on hash', hash);
+                    console.log('trying on hash', hash);
                     await new Promise((resolve) => setTimeout(resolve, period_ms));
                     result = await this.client.tonapi.getTransactionEvent(hash);
                     retries++;
