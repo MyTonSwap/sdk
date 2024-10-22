@@ -1,4 +1,4 @@
-export const defaultBaseUrl = 'https://app.mytonswap.com/api/';
+export const defaultBaseUrl = process.env.BASE_URL ?? 'https://app.mytonswap.com/api/';
 export const TON_ADDRESS = 'EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c';
 export const supportedMintlessTokens = [
     'EQD6Z9DHc5Mx-8PI8I4BjGX0d2NhapaRAK12CgstweNoMint',

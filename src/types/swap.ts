@@ -79,3 +79,13 @@ export interface WalletInfo {
     get_methods: string[];
     is_wallet: boolean;
 }
+
+export interface SwapResponse {
+    to: string;
+    value: string;
+    body: string;
+    init: {
+        code: string;
+        data: string;
+    };
+}

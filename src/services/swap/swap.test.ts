@@ -22,10 +22,11 @@ test(
             1,
             'stonfi',
         );
+
         const swap = await client.swap.createSwap(userWallet, bestRoute);
         expect(swap).toBeObject();
         expect(swap?.value).not.toBeUndefined();
-        expect(swap?.value).toBeGreaterThan(toNano(1));
+        expect(BigInt(swap?.value)).toBeGreaterThan(toNano(1));
     },
     { timeout: 10000 },
 );
@@ -46,7 +47,7 @@ test(
         const swap = await client.swap.createSwap(userWallet, bestRoute);
         expect(swap).toBeObject();
         expect(swap?.value).not.toBeUndefined();
-        expect(swap?.value).toBeGreaterThan(toNano(1));
+        expect(BigInt(swap?.value)).toBeGreaterThan(toNano(1));
     },
     { timeout: 10000 },
 );
