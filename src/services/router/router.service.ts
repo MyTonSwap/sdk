@@ -1,4 +1,3 @@
-import { toNano } from '@ton/ton';
 import { Services } from '../../core/services';
 import { BestRoute, Dex } from '../../types/router';
 

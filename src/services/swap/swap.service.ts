@@ -7,21 +7,10 @@ import {
     SenderArguments,
     toNano,
 } from '@ton/ton';
-import {
-    DEDUST_SWAP,
-    DEDUST_TRANSFER,
-    feeWallet,
-    PTON_V2,
-    STON_ROUTER_V1,
-    supportedMintlessTokens,
-    TON_ADDRESS,
-} from '../../constants';
+
 import { Services } from '../../core/services';
 import { BestRoute } from '../../types/router';
-import { Balance, SwapResponse } from '../../types/swap';
-import { DEX, pTON } from '@ston-fi/sdk';
-
-import { sleep } from '@lifeomic/attempt';
+import { SwapResponse } from '../../types/swap';
 
 export class Swap extends Services {
     /**

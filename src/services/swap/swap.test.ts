@@ -1,7 +1,8 @@
 import { beforeEach, expect, test } from 'bun:test';
 import { MyTonSwapClient } from '../../core/client';
-import { toNano } from '@ton/ton';
+
 import { sleep } from 'bun';
+import { toNano } from '../../utils';
 let client: MyTonSwapClient;
 const userWallet = 'UQAaIQh7jVlOEylI8jM8OI1O-yYGZRqUfJRxuR-K57pskl9I';
 const hmstrJetton = 'EQAJ8uWd7EBqsmpSWaRdf_I-8R8-XHwh3gsNKhy-UrdrPcUo';
