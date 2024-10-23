@@ -10,7 +10,7 @@ export class Swap extends Services {
         return await this.client.request.send<SwapResponse>({
             method: 'POST',
             headers: {
-                ...(app_id ? { app_id: app_id } : {}),
+                ...(app_id ? { 'app-id': app_id } : {}),
             },
             url: 'v2/routes/boc',
             data: {
