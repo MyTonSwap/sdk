@@ -18,7 +18,10 @@ export class Request {
             headers: userOptions.baseURL
                 ? {}
                 : {
-                      'x-api-key': this.client.options?.apiKey ?? '',
+                      ...(this.client.options?.apiKey && {
+                          'x-api-key': this.client.options.apiKey,
+                      }),
+                      ...this.client.options?.headers,
                   },
             method: 'GET',
         } satisfies AxiosRequestConfig;

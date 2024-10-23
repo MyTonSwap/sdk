@@ -6,7 +6,7 @@ import { TonClient } from '@ton/ton';
 import { TonApi } from '../services/tonapi/tonapi.service';
 import { Swap } from '../services/swap/swap.service';
 export class MyTonSwapClient {
-    public options: { apiKey: string | undefined; baseUrl: string | undefined } | undefined;
+    public options: MyTonSwapClientOptions | undefined;
     public request = new Request(this);
     public assets = new Assets(this);
     public router = new Router(this);
