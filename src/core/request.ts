@@ -4,6 +4,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { defaultsDeep } from 'lodash';
 import { MyTonSwapResponse } from '../types/client';
 import { defaultBaseUrl } from '../constants';
+import packageJson from '../../package.json';
 export class Request {
     attemptOptions: Partial<AttemptOptions<any>> = {
         maxAttempts: 3,
@@ -21,7 +22,8 @@ export class Request {
                       ...(this.client.options?.apiKey && {
                           'x-api-key': this.client.options.apiKey,
                       }),
-                      ...this.client.options?.headers,
+                      ...(this.client.options?.headers ?? {}),
+                      'sdk-version': packageJson.version,
                   },
             method: 'GET',
         } satisfies AxiosRequestConfig;

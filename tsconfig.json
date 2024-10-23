@@ -17,6 +17,7 @@
         "noImplicitAny": true,
         "esModuleInterop": true,
         "strictNullChecks": true,
+        "resolveJsonModule": true,
 
         // Best practices
         "strict": true,
