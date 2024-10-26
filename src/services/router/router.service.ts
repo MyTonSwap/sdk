@@ -22,8 +22,9 @@ export class Router extends Services {
             init: true,
             dex: forceDex,
         };
+
         const data = this.client.request.send<BestRoute>({
-            url: '/swap-process/data/pools-v2',
+            url: 'v2/routes/pair',
             method: 'POST',
             data: body,
         });
