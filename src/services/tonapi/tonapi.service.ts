@@ -123,13 +123,20 @@ export class TonApi extends Services {
                     await new Promise((resolve) => setTimeout(resolve, period_ms));
                     result = await this.client.tonapi.getTransactionEvent(hash);
                     retries++;
+                    if (retries > maxRetry) {
+                        throw new Error('Max retries reached');
+                    }
                 }
                 return result;
             } catch (error) {
                 await new Promise((resolve) => setTimeout(resolve, period_ms));
                 retries++;
+                if (retries > maxRetry) {
+                    throw new Error('Max retries reached');
+                }
             }
         }
+        throw new Error('Max retries reached');
     }
 
     /**
@@ -149,7 +156,8 @@ export class TonApi extends Services {
      */
     public allTransactionComplete(event: TransactionEvent) {
         if (event.in_progress) return false;
-        if (event.actions.some((item) => item.status !== 'ok')) return false;
+        if (event.actions.some((item) => item.status !== 'ok'))
+            throw new Error('Transaction failed');
         return true;
     }
 }
