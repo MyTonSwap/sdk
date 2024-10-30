@@ -5,15 +5,48 @@
 <p align="center">SDK for MyTonSwap DEX aggregator</p>
 
 
-### ⚠️ Active Development Notice ⚠️
-This project is currently under active development and is not yet ready for public use.
-
-We recommend you DO NOT use this project in production environments until a stable release is announced. Expect frequent changes, updates, and possible breaking changes during this phase.
-
-
 Installation:
 
 ```bash
 npm install @mytonswap/sdk
 ```
 
+## Usage
+
+Here's a basic example of how to use the MyTonSwap SDK:
+
+```ts
+import { MyTonSwapClient } from '@mytonswap/sdk';
+
+const client = new MyTonSwapClient();
+
+async function performSwap() {
+  const userWallet = 'your-wallet-address';
+  const TON = await client.assets.getExactAsset('TON');
+  const NOT = await client.assets.getExactAsset('NOT');
+  const bestRoute = await client.router.findBestRoute(
+    TON!.address,
+    NOT!.address,
+    toNano(1),
+    1,
+  );
+
+  const swap = await client.swap.createSwap(userWallet, bestRoute);
+  console.log(swap);
+}
+
+performSwap();
+```
+
+
+## Contributing
+
+We welcome contributions! Please read our [contributing guidelines](CONTRIBUTING.md) before submitting a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+If you have any questions or need help, feel free to open an issue on our [GitHub repository](https://github.com/MyTonSwap/sdk/issues).
