@@ -1,3 +1,11 @@
+/**
+ * Converts a given number, string, or bigint to a bigint with the specified number of decimals.
+ *
+ * @param {number | string | bigint} src - The source value to convert. It can be a number, string, or bigint.
+ * @param {number} [decimals=9] - The number of decimal places to consider for the conversion. Defaults to 9.
+ * @returns {bigint} - The converted value as a bigint.
+ * @throws {Error} - Throws an error if the input number is not finite, if the input string is invalid, or if the input number does not have enough precision.
+ */
 export function toNano(src: number | string | bigint, decimals: number = 9): bigint {
     if (typeof src === 'bigint') {
         return src * 10n ** BigInt(decimals);
@@ -59,6 +67,13 @@ export function toNano(src: number | string | bigint, decimals: number = 9): big
     }
 }
 
+/**
+ * Converts a value from nano units to a string representation with the specified number of decimals.
+ *
+ * @param {bigint | number | string} src - The source value in nano units. It can be a bigint, number, or string.
+ * @param {number} [decimals=9] - The number of decimal places to include in the output string. Defaults to 9.
+ * @returns {string} The converted value as a string with the specified number of decimals.
+ */
 export function fromNano(src: bigint | number | string, decimals: number = 9) {
     let v = BigInt(src);
     let neg = false;

@@ -11,6 +11,13 @@ import {
 import { TransactionEvent } from '../../types/transaction-event';
 
 export class TonApi extends Services {
+    /**
+     * Fetches the jetton data for a given wallet address and jetton address.
+     *
+     * @param {string} walletAddr - The wallet address to fetch the jetton data for.
+     * @param {string} jettonAddress - The jetton address to fetch the data from.
+     * @returns {Promise<Balance>} A promise that resolves to the balance data.
+     */
     public async getJettonData(walletAddr: string, jettonAddress: string) {
         const data = await this.client.request.send<Balance>({
             baseURL: 'https://tonapi.io/v2',
@@ -21,6 +28,13 @@ export class TonApi extends Services {
         return data;
     }
 
+    /**
+     * Retrieves a custom payload for a specific wallet and jetton address.
+     *
+     * @param {string} walletAddr - The address of the wallet.
+     * @param {string} jettonAddress - The address of the jetton.
+     * @returns {Promise<CustomPayload>} A promise that resolves to the custom payload.
+     */
     public async getCustomPayload(walletAddr: string, jettonAddress: string) {
         const data = await this.client.request.send<CustomPayload>({
             baseURL: 'https://tonapi.io/v2',
@@ -32,7 +46,12 @@ export class TonApi extends Services {
     }
 
     /**
-     * getWalletAssets
+     * Retrieves wallet assets for a given wallet address, including balances and rates for jettons.
+     *
+     * @param {string} walletAddress - The address of the wallet to retrieve assets for.
+     * @param {string[]} [currencies=['usd']] - An array of currency codes to retrieve rates for.
+     * @param {boolean} [custom_payload=true] - Whether to include custom payload in the request.
+     * @returns {Promise<Map<string, Balance>>} A promise that resolves to a map of balances keyed by jetton addresses.
      */
     public async getWalletAssets(
         walletAddress: string,
@@ -87,7 +106,10 @@ export class TonApi extends Services {
     }
 
     /**
-     * getAssetsRates
+     * Fetches the rates of specified assets from the TON API.
+     *
+     * @param {string[]} assetsAddresses - An array of asset addresses to fetch rates for.
+     * @returns {Promise<Map<string, Prices>>} A promise that resolves to a map where the keys are user-friendly asset addresses and the values are their corresponding prices.
      */
     public async getAssetsRates(assetsAddresses: string[]) {
         const addresses = assetsAddresses.join(',');
@@ -109,6 +131,15 @@ export class TonApi extends Services {
 
     /**
      * waitForTransactionResult
+     */
+    /**
+     * Waits for a transaction result by periodically checking the transaction status.
+     *
+     * @param {string} hash - The hash of the transaction to wait for.
+     * @param {number} [period_ms=3000] - The period in milliseconds to wait between checks.
+     * @param {number} [maxRetry=30] - The maximum number of retries before giving up.
+     * @returns {Promise<TransactionEvent>} - A promise that resolves with the transaction result when complete.
+     * @throws {Error} - Throws an error if the maximum number of retries is reached.
      */
     public async waitForTransactionResult(
         hash: string,
@@ -140,8 +171,10 @@ export class TonApi extends Services {
     }
 
     /**
-     * getTransactionEvent
+     * Fetches a transaction event from the TON API using the provided hash.
      *
+     * @param {string} hash - The hash of the transaction event to retrieve.
+     * @returns {Promise<TransactionEvent>} A promise that resolves to the transaction event.
      */
     public async getTransactionEvent(hash: string) {
         const event = await this.client.request.send<TransactionEvent>({
@@ -152,7 +185,11 @@ export class TonApi extends Services {
     }
 
     /**
-     * allTransactionComplete
+     * Checks if all transactions in the given event are complete.
+     *
+     * @param {TransactionEvent} event - The transaction event to check.
+     * @returns {boolean} - Returns `true` if all transactions are complete and successful, otherwise `false`.
+     * @throws {Error} - Throws an error if any transaction action has a status other than 'ok'.
      */
     public allTransactionComplete(event: TransactionEvent) {
         if (event.in_progress) return false;
