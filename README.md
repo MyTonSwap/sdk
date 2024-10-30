@@ -16,7 +16,7 @@ npm install @mytonswap/sdk
 Here's a basic example of how to use the MyTonSwap SDK:
 
 ```ts
-import { MyTonSwapClient } from '@mytonswap/sdk';
+import { MyTonSwapClient, toNano } from '@mytonswap/sdk';
 
 const client = new MyTonSwapClient();
 
