@@ -4,6 +4,11 @@
 
 <p align="center">SDK for MyTonSwap DEX aggregator</p>
 
+![GitHub package.json version](https://img.shields.io/github/package-json/v/mytonswap/sdk?style=for-the-badge&color=%230f904d)
+![GitHub last commit](https://img.shields.io/github/last-commit/mytonswap/sdk?style=for-the-badge&color=%230f904d)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/mytonswap/sdk/main.yml?style=for-the-badge&color=%230f904d)
+![NPM Downloads](https://img.shields.io/npm/dw/%40mytonswap%2Fsdk?style=for-the-badge&color=%230f904d)
+
 # Mytonswap SDK
 
 The *Mytonswap SDK* is a comprehensive JavaScript library for integrating with the TON blockchain, allowing you to access assets, find optimal swap routes, and create swap payloads with ease. This SDK is designed to streamline TON blockchain interactions, making it suitable for DeFi applications, dApps, and wallets.
