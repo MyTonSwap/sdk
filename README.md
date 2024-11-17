@@ -9,27 +9,30 @@
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/mytonswap/sdk/main.yml?style=for-the-badge&color=%230f904d)
 ![NPM Downloads](https://img.shields.io/npm/dw/%40mytonswap%2Fsdk?style=for-the-badge&color=%230f904d)
 
+📃 Docs: https://mytonswap.com/docs/sdk/introduction
+
 # Mytonswap SDK
 
-The *Mytonswap SDK* is a comprehensive JavaScript library for integrating with the TON blockchain, allowing you to access assets, find optimal swap routes, and create swap payloads with ease. This SDK is designed to streamline TON blockchain interactions, making it suitable for DeFi applications, dApps, and wallets.
+The _Mytonswap SDK_ is a comprehensive JavaScript library for integrating with the TON blockchain, allowing you to access assets, find optimal swap routes, and create swap payloads with ease. This SDK is designed to streamline TON blockchain interactions, making it suitable for DeFi applications, dApps, and wallets.
 
 ## Features
 
-- **Access to TON Blockchain Assets**:
-  - Retrieve a specific asset by address or identifier.
-  - Fetch a paginated list of assets for browsing and filtering.
-  - Search for assets by name, ticker, or other identifying information.
+-   **Access to TON Blockchain Assets**:
 
-- **Token Swap Optimization**:
-  - Calculate the best swap route between tokens to minimize fees and maximize returns.
+    -   Retrieve a specific asset by address or identifier.
+    -   Fetch a paginated list of assets for browsing and filtering.
+    -   Search for assets by name, ticker, or other identifying information.
 
-- **Swap Payload Creation**:
-  - Generate a ready-to-use payload for seamless token swaps on the TON blockchain.
+-   **Token Swap Optimization**:
 
-- **Built-in Utility Functions**:
-  - Easily convert between Ton units using `toNano` and `fromNano` functions.
+    -   Calculate the best swap route between tokens to minimize fees and maximize returns.
 
+-   **Swap Payload Creation**:
 
+    -   Generate a ready-to-use payload for seamless token swaps on the TON blockchain.
+
+-   **Built-in Utility Functions**:
+    -   Easily convert between Ton units using `toNano` and `fromNano` functions.
 
 ## Installation
 
@@ -47,23 +50,17 @@ import { MyTonSwapClient, toNano } from '@mytonswap/sdk';
 const client = new MyTonSwapClient();
 
 async function performSwap() {
-  const userWallet = 'your-wallet-address';
-  const TON = await client.assets.getExactAsset('TON');
-  const NOT = await client.assets.getExactAsset('NOT');
-  const bestRoute = await client.router.findBestRoute(
-    TON!.address,
-    NOT!.address,
-    toNano(1),
-    1,
-  );
+    const userWallet = 'your-wallet-address';
+    const TON = await client.assets.getExactAsset('TON');
+    const NOT = await client.assets.getExactAsset('NOT');
+    const bestRoute = await client.router.findBestRoute(TON!.address, NOT!.address, toNano(1), 1);
 
-  const swap = await client.swap.createSwap(userWallet, bestRoute);
-  console.log(swap);
+    const swap = await client.swap.createSwap(userWallet, bestRoute);
+    console.log(swap);
 }
 
 performSwap();
 ```
-
 
 ## Contributing
 
