@@ -84,6 +84,7 @@ export interface SwapResponse {
     to: string;
     value: string;
     body: string;
+    query_id: string;
     init: {
         code: string;
         data: string;
