@@ -8,6 +8,7 @@ import packageJson from '../../package.json';
 export class Request {
     attemptOptions: Partial<AttemptOptions<any>> = {
         maxAttempts: 3,
+        delay: 500,
     };
     constructor(private client: MyTonSwapClient) {}
     /**
