@@ -44,12 +44,12 @@
         "tsup": "^8.3.0"
     },
     "peerDependencies": {
-        "@ton/ton": "^15.0.0",
         "typescript": "^5.0.0"
     },
     "dependencies": {
         "@lifeomic/attempt": "^3.1.0",
         "axios": "^1.7.7",
-        "lodash": "^4.17.21"
+        "lodash": "^4.17.21",
+        "@ton/ton": "^15.0.0"
     }
 }
