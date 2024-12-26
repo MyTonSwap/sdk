@@ -150,7 +150,7 @@ export class TonApi extends Services {
         while (retries <= maxRetry) {
             try {
                 let result = await this.client.tonapi.getTransactionEvent(hash);
-                while (!this.allTransactionComplete(result)) {
+                while (this.allTransactionComplete(result) === 'inprogress') {
                     await new Promise((resolve) => setTimeout(resolve, period_ms));
                     result = await this.client.tonapi.getTransactionEvent(hash);
                     retries++;
@@ -188,13 +188,12 @@ export class TonApi extends Services {
      * Checks if all transactions in the given event are complete.
      *
      * @param {TransactionEvent} event - The transaction event to check.
-     * @returns {boolean} - Returns `true` if all transactions are complete and successful, otherwise `false`.
+     * @returns {string} - Returns `ok` if all transactions are complete and successful, otherwise `failed` or `inprogress`.
      * @throws {Error} - Throws an error if any transaction action has a status other than 'ok'.
      */
     public allTransactionComplete(event: TransactionEvent) {
-        if (event.in_progress) return false;
-        if (event.actions.some((item) => item.status !== 'ok'))
-            throw new Error('Transaction failed');
-        return true;
+        if (event.in_progress) return 'inprogress';
+        if (event.actions.some((item) => item.status !== 'ok')) return 'failed';
+        return 'ok';
     }
 }
